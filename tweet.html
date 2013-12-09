@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+			<title>Formulaire</title>
+			<link rel="stylesheet" href="tweet.css">
+			 <script src="http://openlayers.org/api/OpenLayers.js"></script>
+	</head>
+	<body>
+
+		<div id="container">
+			<header>
+				<form id="formHashTag" onsubmit="handleForm()" action="#" >
+					<input id="searchField" type="search" placeholder="#HashTag" required/>
+					<input type="submit" value="Rechercher"/>
+					<select id="locationField" name="language">
+						<option value="fr" selected>France</option> 
+						<option value="us">USA</option>
+						<option value="ru">Russie</option>
+					</select>
+				</form>
+			</header>
+
+			<section id="partie-centrale">
+
+				<div id="tweets">
+
+					<p id="info-res">1 tweet trouvé</p>
+					<blockquote class="twitter-tweet"><p>c est l&#39;heure d installer le nouveau matos pour stream =)</p>&mdash; Boblegob (@Boblegob2) <a href="https://twitter.com/Boblegob2/statuses/398733443489472512">November 8, 2013</a></blockquote>
+					<script async src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
+				</div>
+
+				<div id="map">
+				</div>
+
+			<script src="script.js">
+			</script>
+
+			</section>
+		</div>
+	</body>
+
+</html>
