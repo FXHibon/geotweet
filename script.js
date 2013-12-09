@@ -1,3 +1,6 @@
+// A remplacer eventuellement par "geotweet.php?"
+const URL_SERVER = "tweet.php?";
+
 
 /* Affichage de la map */
 var map = new OpenLayers.Map('map');
@@ -13,7 +16,20 @@ var tweetsArray = [];
 /* Créer un calque pour mettre des point dessus. Tweet est le nom du calque qui affiche les points. On peut mettre le nom que l’on veut */
 var calqueMarkers = new OpenLayers.Layer.Markers("Tweet");
 
-/* Requete AJAX vers geotweet.php */
+/* inclure joliment un tweet */
+function getEmbeddedTweet(id) {
+ 	var xhr = new XMLHttpRequest();
+	var url = "twitter_query=" + encodeURIComponent("https://api.twitter.com/1.1/statuses/oembed.json?id=" + id);
+
+	xhr.open("GET", URL_SERVER + url, true);
+	xhr.send(null);
+	setTimeout(500);
+	var res = JSON.parse(xhr.responseText);
+	console.log(res);
+	return res["html"];
+}
+
+/* Requete AJAX vers geotweet.php pour la liste des tweets*/
 function get(query, location) {
 
 	var xhr = new XMLHttpRequest();
@@ -21,18 +37,15 @@ function get(query, location) {
 	// Appelée lorsque la requête AJAX se termine avec succès
 	xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-
-            console.log(xhr.responseText); // Données textuelles récupérées
-
             var data = JSON.parse(xhr.responseText);
             handleTweets(data["statuses"]);
 		}
 	};
 
 	var url;
-	url = "geotweet.php?twitter_query=" + encodeURIComponent("https://api.twitter.com/1.1/search/tweets.json?q=" + encodeURIComponent(query));
+	url = "twitter_query=" + encodeURIComponent("https://api.twitter.com/1.1/search/tweets.json?q=" + encodeURIComponent(query));
 
-	xhr.open("GET", url, true);
+	xhr.open("GET", URL_SERVER + url, true);
 	xhr.send(null);
 }
 
@@ -48,11 +61,9 @@ function handleForm() {
 
 // Affiche sur la map les tweets recu en parametres
 function handleTweets(tweets) {
-
+	console.log("supression des marqueurs");
 	// Supprime les marqueurs déjà présent s'il y en a
 	removeAllMarkers();
-
-	
 
 	// Créé un marquer par tweet
 	tweets.forEach(function(tweet) {
@@ -83,7 +94,7 @@ function addMarker(coordinate) {
 	
 	// créer un marqueur sur le calque au coordonnée coord (créés au dessus)
 	var mark = new OpenLayers.Marker(coord);
-	calqueMarkers.addMarker(mark);
+	
 
 	// On l'ajoute dans la liste, pour pouvoir ensuite le supprimer
 	markers.push(mark);
@@ -95,9 +106,36 @@ function removeAllMarkers() {
 		calqueMarkers.removeMarker(marker);
 	});
 	markers = [];
-	tweets = [];
+	tweetsArray = [];
 }
 
 function updateUI() {
+	
+
+	console.log("delete tweets list");
+	// Mets à jour la liste des tweets
+	document.getElementById("data").innerHTML = "";
+
+	console.log("update nombre de res");
+	// Mets à jour le nombre de résultats
 	document.getElementById("info-res").innerHTML = markers.length + " tweets trouvés";
+
+	
+
+	console.log("affiche tweet");
+	var div = "";
+	// Affiche les tweets dans la partie droite
+	tweetsArray.forEach(function(tweet) {
+		console.log(tweet["id"]);
+		div += getEmbeddedTweet(tweet["id"]);
+	});
+
+	document.getElementById("data").innerHTML = div;
+
+	console.log("affiche marqueur");
+	// Ajoute les marqueurs sur la map
+	markers.forEach(function(mark) {
+		calqueMarkers.addMarker(mark);
+	});
+
 }
