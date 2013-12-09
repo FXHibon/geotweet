@@ -7,6 +7,8 @@ map.zoomToMaxExtent();
 
 /* Liste de tout les marqueurs present sur la carte */
 var markers = [];
+/* Liste des tweets affichés */
+var tweetsArray = [];
 
 /* Créer un calque pour mettre des point dessus. Tweet est le nom du calque qui affiche les points. On peut mettre le nom que l’on veut */
 var calqueMarkers = new OpenLayers.Layer.Markers("Tweet");
@@ -55,7 +57,7 @@ function handleTweets(tweets) {
 	// Créé un marquer par tweet
 	tweets.forEach(function(tweet) {
 		if(tweet["coordinates"] != null) {
-
+			tweetsArray.push(tweet);
 			addMarker(tweet["coordinates"]["coordinates"]);
 		}
 	});
@@ -93,8 +95,9 @@ function removeAllMarkers() {
 		calqueMarkers.removeMarker(marker);
 	});
 	markers = [];
+	tweets = [];
 }
 
 function updateUI() {
-	document.getElementById("info-res").innerHTML = markers.length + " tweet trouvés"
+	document.getElementById("info-res").innerHTML = markers.length + " tweets trouvés";
 }
