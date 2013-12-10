@@ -5,13 +5,14 @@
 			<title>Formulaire</title>
 			<link rel="stylesheet" href="tweet.css">
 			 <script src="http://openlayers.org/api/OpenLayers.js"></script>
+
 	</head>
 	<body>
 
 		<div id="container">
 			<header>
 				<form id="formHashTag" onsubmit="handleForm()" action="#" >
-					<input id="searchField" type="search" placeholder="#HashTag" required/>
+					<input value="#localisation" id="searchField" type="search" placeholder="#HashTag" required/>
 					<input type="submit" value="Rechercher"/>
 					<select id="locationField" name="language">
 						<option value="fr" selected>France</option> 
@@ -28,19 +29,16 @@
 
 				<div id="tweets">
 					<p id="info-res"></p>
-
 					<div id="data">
 					</div>
 				</div>
 
-			<script src="script.js">
-			</script>
+				
 
-			<script src="http://platform.twitter.com/widgets.js">
+			<script src="script.js">
 			</script>
 
 			</section>
 		</div>
 	</body>
-
 </html>

@@ -1,6 +1,8 @@
 <?php
 
  //1 - Settings (please update to math your own)
+
+
 $consumer_key = '8T08nPrFpbAIEZQTCUUT4Q'; //Provide your application consumer key
 $consumer_secret = 'hyA7ySm6WAZGkT8WXfoeLMUb0P0jOx90ss3drSIiA'; //Provide your application consumer secret
 $oauth_token = '1673697182-6zo9eruttYz27WzbqXFs7bVCTmprdEK8bV9NNJ7'; //Provide your oAuth Token
