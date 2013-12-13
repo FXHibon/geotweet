@@ -11,7 +11,7 @@
 
 		<div id="container">
 			<header>
-				<form id="formHashTag" onsubmit="handleForm()" action="#" >
+				<form id="formHashTag" onsubmit="handleForm(); return false" action="#" >
 					<input value="#localisation" id="searchField" type="search" placeholder="#HashTag" required/>
 					<input type="submit" value="Rechercher"/>
 					<select id="locationField" name="language">
@@ -28,6 +28,7 @@
 				</div>
 
 				<div id="tweets">
+					<img src="ajax-loader.gif" alt="loader ajax" id="loader"/>
 					<p id="info-res"></p>
 					<div id="data">
 					</div>

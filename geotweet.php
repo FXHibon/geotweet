@@ -17,10 +17,15 @@
   define("REQUEST_PARAM", "twitter_query"); // URL+arguments de la requete
 
   // definition des donnees necessaire a l'authentification
-  define("CONSUMER_ID", "JoGlpRkZyoDHXrPnOb7PnA");
+/*  define("CONSUMER_ID", "JoGlpRkZyoDHXrPnOb7PnA");
   define("CONSUMER_SECRET", "hX5CxPAxcmBpCV2Nm1jGjwr5uilMSBqkVSulJlmv5mc");
   define("ACCESS_TOKEN", "2188462572-UaXWyWBlk7ldMKGOJA8xDI7KYHj9I3tBJ43HAag");
-  define("ACCESS_TOKEN_SECRET", "nndRwj0ovf0nEGtaIv1IdISc5PJMGzLMHfTLkvqMTin3W");
+  define("ACCESS_TOKEN_SECRET", "nndRwj0ovf0nEGtaIv1IdISc5PJMGzLMHfTLkvqMTin3W");*/
+
+  define("CONSUMER_ID", "k0gfNjG8mCss7mk8LaZ14Q");
+  define("CONSUMER_SECRET", "IDE9p8QA8fk1Xu9oR8GIJYoGHlQeHauYPtye7e6wBQ");
+  define("ACCESS_TOKEN", '2188462572-MYrpYcKDNrMAnIiyuSUBg3SwYsTg7UkPA2eh8Ip');
+  define("ACCESS_TOKEN_SECRET", "3TjkARYjilxgNWr1jkH1IYRVKn7ItYIrd2CD8yN9XSYhm");
 
   // definition de l'adresse du proxy
   define("HTTP_PROXY", "proxyetu.iut-nantes.univ-nantes.prive:3128");
